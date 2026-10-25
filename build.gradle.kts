@@ -14,7 +14,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT")
 
     // BedWars1058 API dependency
-    compileOnly("com.github.andrei1058:BedWars1058:25.2")
+    compileOnly(files("libs/bedwars-plugin-25.5-SNAPSHOT.jar"))
 }
 
 java {
