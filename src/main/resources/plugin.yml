@@ -1,6 +1,16 @@
-name: Bedwars1058-FastForward
-version: '${version}'
-
-main: dev.etran.bedwars1058FastForward.Bedwars1058FastForward
-api-version: '1.20'
-load: POSTWORLD
+name: BedWars1058FastForward
+version: 1.0.0
+main: dev.etran.bedwars1058FastForward.FastForwardPlugin
+api-version: "1.20"
+depend: [BedWars1058]
+description: Speed up, slow down and re-schedule BedWars1058 game events.
+commands:
+  bwff:
+    description: BedWars1058 FastForward control
+    usage: /bwff help
+    aliases: [fastforward, ff]
+    permission: bwff.admin
+permissions:
+  bwff.admin:
+    description: Use every /bwff subcommand
+    default: op

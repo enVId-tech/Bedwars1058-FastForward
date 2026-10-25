@@ -1,0 +1,3 @@
+# Highest game speed multiplier /bwff speed will accept.
+# 1.0 = normal. Each whole multiple means one extra game "second" processed per second.
+max-speed: 20.0
