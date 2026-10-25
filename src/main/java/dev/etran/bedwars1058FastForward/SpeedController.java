@@ -82,7 +82,11 @@ final class SpeedController implements Listener {
             if (!(pt instanceof Runnable)) {
                 throw new IllegalStateException("This BedWars1058 build's playing task isn't runnable; speed control is unavailable.");
             }
-            pt.getBukkitTask().cancel();
+            try {
+                pt.getBukkitTask().cancel();
+            } catch (NoSuchMethodError e) {
+                throw new IllegalStateException("This BedWars1058 build can't expose its playing task; speed control is unavailable.");
+            }
             final Session created = new Session(pt, (Runnable) pt);
             created.loop = Bukkit.getScheduler().runTaskTimer(plugin, () -> tick(a, created), 1L, 1L);
             sessions.put(a, created);

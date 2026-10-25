@@ -229,10 +229,14 @@ final class StageController {
                 tier >= 3 ? 0 : (seconds > 0 ? seconds : start(a, type, tier + 1)));
 
         if (announce && tier > old && tier >= 2) {
-            if (diamond) {
-                a.sendDiamondsUpgradeMessages();
-            } else {
-                a.sendEmeraldsUpgradeMessages();
+            try {
+                if (diamond) {
+                    a.sendDiamondsUpgradeMessages();
+                } else {
+                    a.sendEmeraldsUpgradeMessages();
+                }
+            } catch (NoSuchMethodError ignored) {
+                // very old BedWars1058 builds lack the announcement helpers; the tier change still applied
             }
         }
         recompute(a);
