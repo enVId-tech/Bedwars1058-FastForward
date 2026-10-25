@@ -1,0 +1,6 @@
+name: Bedwars1058-FastForward
+version: '${version}'
+
+main: dev.etran.bedwars1058FastForward.Bedwars1058FastForward
+api-version: '1.20'
+load: POSTWORLD
