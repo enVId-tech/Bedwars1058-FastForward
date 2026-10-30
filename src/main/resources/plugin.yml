@@ -1,5 +1,5 @@
-name: BedWars1058FastForward
-version: 1.0.0
+name: BedWars1058-FastForward
+version: ${version}
 main: dev.etran.bedwars1058FastForward.FastForwardPlugin
 api-version: "1.13"
 depend: [BedWars1058]

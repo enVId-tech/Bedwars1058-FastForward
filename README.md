@@ -44,5 +44,8 @@ Main command: `/bwff` (aliases: `/ff`, `/fastforward`)
 - Jumping straight to `end` skips the dragons.
 - Run `/bwff debug` first on a new BedWars1058 version.
 
-# This plugin is vibe-coded (for the most part, I checked over the code though to ensure compatibility)
-# Still, use at your own risk
+## Developer note
+This plugin is coded with AI assistance and architected completely by me. Regardless, use at your own risk.
+
+## License
+This plugin is under the MIT License, check the [License](LICENSE) file for more details.

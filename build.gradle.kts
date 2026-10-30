@@ -1,5 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    id("java-library")
+    kotlin("jvm") version "2.0.21"
+    id("com.gradleup.shadow") version "8.3.5"
     id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
@@ -16,6 +19,9 @@ dependencies {
 
     // BedWars1058 (provides the API classes we compile against)
     compileOnly(files("libs/bedwars-plugin-25.5-SNAPSHOT.jar"))
+
+    // Bukkit doesn't ship the Kotlin runtime, so it is bundled (and relocated) by shadowJar below.
+    implementation(kotlin("stdlib"))
 }
 
 java {
@@ -23,10 +29,30 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
+kotlin {
+    compilerOptions {
+        // Bytecode target: runs on Java 8 and up
+        jvmTarget.set(JvmTarget.JVM_1_8)
+    }
+}
+
 tasks {
-    // Bytecode target: runs on Java 8 and up
     withType<JavaCompile> {
         options.release.set(8)
+    }
+
+    shadowJar {
+        archiveClassifier.set("")
+        // Relocate so we can't clash with another plugin's copy of Kotlin.
+        relocate("kotlin", "dev.etran.bedwars1058FastForward.libs.kotlin")
+        relocate("org.jetbrains.annotations", "dev.etran.bedwars1058FastForward.libs.jetbrains.annotations")
+        relocate("org.intellij.lang.annotations", "dev.etran.bedwars1058FastForward.libs.intellij.annotations")
+        minimize()
+    }
+
+    // Make `gradle build` produce the ready-to-install, Kotlin-bundled jar.
+    assemble {
+        dependsOn(shadowJar)
     }
 
     runServer {

@@ -1,1 +1,1 @@
-rootProject.name = "Bedwars1058-FastForward"
+rootProject.name = "BedWars1058-FastForward"
